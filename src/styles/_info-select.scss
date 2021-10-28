@@ -1,0 +1,27 @@
+.info-select {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__img {
+        width: 150px;
+        height: auto;
+    }
+
+    &__name {
+        margin-top: 10px;
+
+        font-weight: bold;
+    }
+
+    &__rate {
+        margin-top: 15px;
+
+        font-size: 25px;
+        font-weight: bold;
+
+        color: blue;
+    }
+}

@@ -1,0 +1,26 @@
+@import './libs/_normalize.scss';
+@import './libs/_global.scss';
+
+.app {
+
+    &__title {
+        width: 100%;
+
+        position: absolute;
+        top: 45px;
+
+        text-align: center;
+    }
+
+    &__loading {
+        width: 100%;
+
+        position: relative;
+        top: 40vh;
+
+        text-align: center;
+
+        font-size: 50px;
+        font-weight: bold;
+    }
+}
