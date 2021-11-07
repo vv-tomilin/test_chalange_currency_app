@@ -1,43 +1,45 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 
 import SelectCurrency from './components/SelectCurrency';
 
 import './styles/app.scss';
 
 function App() {
-  
+
   const [rates, setRates] = useState({});
   const [currencyNames, setCurrencyNames] = useState({});
   const [isLoadingRates, setIsLoadingRates] = useState(false);
   const [isLoadingNames, setIsLoadingNames] = useState(false);
 
   useEffect(() => {
-    fetch('http://data.fixer.io/api/latest?access_key=7736be7008dd10910ea6e2ac4a8c1dae')
-          .then(response => response.json())
-          .then((json) => {
-            setRates(json.rates);
-            setIsLoadingRates(true);
-          });
-    
-    fetch('http://data.fixer.io/api/symbols?access_key=7736be7008dd10910ea6e2ac4a8c1dae')
-          .then(response => response.json())
-          .then((json) => {
-            setCurrencyNames(json.symbols);
-            setIsLoadingNames(true);
-          })
+    fetch('https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/eur.json')
+      .then(response => response.json())
+      .then((json) => {
+        setRates(json.eur);
+        setIsLoadingRates(true);
+      });
+
+    fetch('https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies.json')
+      .then(response => response.json())
+      .then((json) => {
+        setCurrencyNames(json);
+        setIsLoadingNames(true);
+      })
   }, []);
 
   return (
-      <div className="app">
-        <h1 className='app__title'>Exchange rate</h1>
-        <div>
-          {isLoadingRates && isLoadingNames
-            ? <SelectCurrency
+    <div className="app">
+      <h1 className='app__title'>Exchange rate</h1>
+      <h2 className='app__base-title'>Base currency EUR</h2>
+      <div>
+        {isLoadingRates && isLoadingNames
+          ? <SelectCurrency
             rates={rates}
-            currencyNames={currencyNames}/>
-            : <p className='app__loading'>Loading...</p>}
-        </div>
+            currencyNames={currencyNames} />
+          : <p className='app__loading'>Loading...</p>}
       </div>
+      <div className='app__empty-mob'></div>
+    </div>
   );
 }
 

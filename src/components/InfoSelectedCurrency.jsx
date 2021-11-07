@@ -2,9 +2,9 @@ import React from 'react';
 
 import '../styles/_info-select.scss';
 
-function InfoSelectedCurrency({flagURL, label, fullName, value, selected, className}) {
+function InfoSelectedCurrency({ flagURL, label, fullName, value, selected, className }) {
 
-    const name = `${fullName} (${label})`;
+    const name = `${fullName} (${label.toUpperCase()})`;
 
     return (
         <>
@@ -12,7 +12,7 @@ function InfoSelectedCurrency({flagURL, label, fullName, value, selected, classN
                 <div className={className}>
                     <div className="info-select">
                         <div className='info-select__img'>
-                            <img src={flagURL} alt="contry flag"/>
+                            <img src={flagURL} alt="contry flag" />
                         </div>
                         <p className='info-select__name'>{name}</p>
                         <p className='info-select__rate'>{value}</p>
@@ -20,7 +20,7 @@ function InfoSelectedCurrency({flagURL, label, fullName, value, selected, classN
                 </div>
             }
 
-            {!selected && 
+            {!selected &&
                 <div className={className}>
                     <p className="info-select">Select currency please...</p>
                 </div>

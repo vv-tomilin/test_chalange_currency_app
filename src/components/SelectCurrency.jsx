@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import InfoSelectedCurrency from './InfoSelectedCurrency';
 
 import '../styles/_select-currency.scss';
 
-function SelectCurrency({rates, currencyNames}) {
+function SelectCurrency({ rates, currencyNames }) {
 
     let currFullInfo = [];
 
@@ -13,7 +13,7 @@ function SelectCurrency({rates, currencyNames}) {
     const currLabels = Object.keys(rates);
     const currValues = Object.values(rates);
 
-    for(let i = 0; i < currLabels.length; i++) {
+    for (let i = 0; i < currLabels.length; i++) {
         currFullInfo.push({
             id: i,
             label: currLabels[i],
@@ -30,16 +30,44 @@ function SelectCurrency({rates, currencyNames}) {
 
     const [isOpenList, setIsOpenList] = useState(false);
 
-    const openCloseList = () => {setIsOpenList(!isOpenList)};
+    const openList = () => { setIsOpenList(true) };
+    const closeList = () => { setIsOpenList(false) }
 
     const changeInfoValues = (label, fullName, value) => {
         const flagSym = label.slice(0, 2).toLowerCase();
 
-        setFlagURL(`https://flagcdn.com/${flagSym}.svg`);
+        const otherCurr = [
+            'btc',
+            'ada',
+            'eth',
+            'bnb',
+            'ang',
+            'bch',
+            'ggp',
+            'imp',
+            'ltc',
+            'pen',
+            'usdt',
+            'xaf',
+            'xag',
+            'xau',
+            'xcd',
+            'xdr',
+            'xlm',
+            'xof',
+            'xpf',
+            'xrp'
+        ];
+
+        if (otherCurr.includes(label)) {
+            setFlagURL('https://ic.wampi.ru/2021/11/07/no_flag.png')
+        } else {
+            setFlagURL(`https://flagcdn.com/${flagSym}.svg`);
+        }
         setLabel(label);
         setFullName(fullName);
         setValue(value);
-        openCloseList();
+        openList();
         setSelected(true);
     };
 
@@ -52,13 +80,13 @@ function SelectCurrency({rates, currencyNames}) {
                 label={label}
                 fullName={fullName}
                 value={value}
-                selected={selected}/>
+                selected={selected} />
 
             <div className='select-currency'>
-                <button 
-                    onClick={openCloseList}
+                <button
+                    onClick={!isOpenList ? openList : closeList}
                     className='select-currency__button'>
-                        SELECT CURRENCY
+                    {isOpenList ? 'CLOSE' : 'SELECT CURRENCY'}
                 </button>
 
                 {isOpenList &&
@@ -70,7 +98,7 @@ function SelectCurrency({rates, currencyNames}) {
                                     key={rate.id}
                                     value={rate.label}
                                     onClick={() => changeInfoValues(rate.label, rate.fullName, rate.value)} >
-                                        {rate.fullName}
+                                    {rate.fullName}
                                 </li>
                             ))
                         }

@@ -12,6 +12,15 @@
         text-align: center;
     }
 
+    &__base-title {
+        width: 100%;
+
+        position: absolute;
+        top: 145px;
+
+        text-align: center;
+    }
+
     &__loading {
         width: 100%;
 
@@ -23,4 +32,11 @@
         font-size: 50px;
         font-weight: bold;
     }
+
+    @media (max-width: 768px) {
+        &__empty-mob {
+            height: 80vh;
+        }
+    }
+    
 }
