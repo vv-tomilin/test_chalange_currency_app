@@ -21,6 +21,7 @@
         width: 50%;
 
         @media(max-width: 768px) {
+            width: 100%;
             min-height: 150px;
         }
     }
@@ -97,7 +98,7 @@
     &__item {
         cursor: pointer;
 
-        font-size: 20px;
+        font-size: 14px;
 
         text-align: center;
 
